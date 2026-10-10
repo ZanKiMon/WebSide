@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/*
+ * 「墨与冰 · Ink & Ice」主题（Tailwind v4 @theme 语义 token）
+ * 全站颜色只允许从这里取：bg-background / bg-surface / border-border /
+ * text-text-primary / text-text-secondary / text-accent
+ */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas,
+    "Courier New", monospace;
+
+  --color-background: #090a0c; /* 全页底色：带冷调的墨黑 */
+  --color-surface: #0f1216; /* 卡片、浮层底色 */
+  --color-surface-hover: #151a20; /* 卡片 hover 底色 */
+  --color-border: #1e252e; /* 全站只用 1px 实线，禁 box-shadow */
+  --color-text-primary: #e9edf2; /* 标题与正文强调（对底色约 16:1） */
+  --color-text-secondary: #8b94a3; /* 说明与元信息（约 6:1，AA 达标） */
+  --color-accent: #6ee7d8; /* 唯一强调色：天青冰薄荷 */
+}
+
+/* 基底 */
+body {
+  @apply bg-background font-sans text-text-primary antialiased;
+}
+
+/* 选中文字 = 出现一块冰 */
+::selection {
+  background: #6ee7d8;
+  color: #090a0c;
+}
+
+/* 键盘操作可见焦点 */
+:focus-visible {
+  outline: 2px solid #6ee7d8;
+  outline-offset: 2px;
+}
+
+/* 锚点平滑滚动（尊重系统的减少动效偏好） */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Hero 底部滚动指示：细线里缓慢下移的小冰段 */
+@keyframes drift-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(300%);
+  }
+}
+.scroll-dot {
+  animation: drift-down 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-dot {
+    animation: none;
+  }
+}
