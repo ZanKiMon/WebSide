@@ -64,15 +64,19 @@ export const moments = [
 ]
 
 /**
- * 图库 —— 相册分类卡片（照片以后自己往 src/assets/ 里放）
- *   - title: 相册名
- *   - count: 照片数量（自己填写）
- *   - cover: 封面图路径（如 './assets/gallery-xxx.jpg'；留空则显示占位渐变）
+ * 图库 —— 照片墙（图片放 src/assets/ 后在这里填路径，按数组顺序显示）
+ *   - src:   缩略图路径（网格里显示的小图，建议宽 640px）
+ *   - full:  点击放大后的原图路径（省略则点击时直接用 src）
+ *   - title: 可选的小标题/日期（不填就不显示标题栏）
  */
 export const gallery = [
-  { title: { zh: '日常随拍', ja: '日常スナップ', ko: '일상 스냅', en: 'Daily Shots' }, count: 12, cover: '' },
-  { title: { zh: '折腾记录', ja: '作業記録', ko: '작업 기록', en: 'Tinkering' }, count: 8, cover: '' },
-  { title: { zh: '风景收藏', ja: '風景コレクション', ko: '풍경 모음', en: 'Scenery' }, count: 5, cover: '' },
+  { src: './assets/gallery-01-thumb.webp', full: './assets/gallery-01.webp', title: '2025-01-01' },
+  { src: './assets/gallery-02-thumb.webp', full: './assets/gallery-02.webp', title: '2025-01-02' },
+  { src: './assets/gallery-03-thumb.webp', full: './assets/gallery-03.webp', title: '2025-01-02' },
+  { src: './assets/gallery-04-thumb.webp', full: './assets/gallery-04.webp', title: '2025-01-02' },
+  { src: './assets/gallery-05-thumb.webp', full: './assets/gallery-05.webp', title: '2025-01-02' },
+  { src: './assets/gallery-06-thumb.webp', full: './assets/gallery-06.webp', title: '2025-01-03' },
+  { src: './assets/gallery-07-thumb.webp', full: './assets/gallery-07.webp', title: '2025-01-04' },
 ]
 
 /** 项目列表（卡片按数组顺序渲染，字段含义见各项注释） */
