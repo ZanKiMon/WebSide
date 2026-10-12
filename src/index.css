@@ -7,6 +7,7 @@
  * moe:xxx 工具类（@custom-variant）只在二次元主题下生效，用于主题专属装饰
  */
 @custom-variant moe ([data-theme='moe'] &);
+@custom-variant p5 ([data-theme='p5'] &);
 
 @theme {
   --font-sans: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
@@ -39,6 +40,24 @@
   color-scheme: light;
 }
 
+/* 「怪盗红 Phantom Red」主题：绯红 × 墨黑 × 纸白 + 一点 P5 黄（红取对黑底 ≥4.5:1 的亮度） */
+[data-theme='p5'] {
+  --color-background: #0b0a0b;
+  --color-surface: #171317;
+  --color-surface-hover: #221a1e;
+  --color-border: #33272d;
+  --color-text-primary: #f5f2ef;
+  --color-text-secondary: #a89fa3;
+  --color-accent: #ff3348;
+  color-scheme: dark;
+}
+
+/* 漫画网点背景（P5 的 halftone 质感） */
+[data-theme='p5'] body {
+  background-image: radial-gradient(rgba(255, 51, 72, 0.07) 1px, transparent 1.4px);
+  background-size: 16px 16px;
+}
+
 /* 基底 */
 body {
   @apply bg-background font-sans text-text-primary antialiased;
@@ -55,6 +74,10 @@ body {
 [data-theme='moe'] ::selection {
   background: #ffd3e0;
   color: #454050;
+}
+[data-theme='p5'] ::selection {
+  background: #ff3348;
+  color: #0b0a0b;
 }
 
 /* 键盘操作可见焦点（随主题取强调色） */
@@ -78,6 +101,51 @@ body {
   background:
     radial-gradient(closest-side, rgba(255, 170, 200, 0.4), transparent 70%),
     radial-gradient(closest-side, rgba(150, 205, 255, 0.32), transparent 62%);
+}
+[data-theme='p5'] .hero-glow {
+  background: radial-gradient(closest-side, rgba(255, 51, 72, 0.16), transparent 70%);
+}
+
+/* 怪盗红：标题更重更冲 */
+[data-theme='p5'] h1,
+[data-theme='p5'] h2 {
+  font-weight: 800;
+}
+
+/* 怪盗红：卡片切角 + 逐卡错落微倾（拼贴感）；rotate 是独立 CSS 属性，不与 Reveal 的 transform 动画冲突 */
+[data-theme='p5'] .p5-card {
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+[data-theme='p5'] .p5-card-cell:nth-child(odd) .p5-card {
+  rotate: -0.5deg;
+}
+[data-theme='p5'] .p5-card-cell:nth-child(even) .p5-card {
+  rotate: 0.45deg;
+}
+
+/* 怪盗红：CTA 按钮整体倾斜 */
+[data-theme='p5'] .p5-skew {
+  transform: skewX(-6deg);
+}
+
+/* 飘落碎片（红/白/黄三角，仅怪盗红主题渲染，见 components/Shards.jsx） */
+@keyframes shard-fall {
+  0% {
+    transform: translate3d(0, -6vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(var(--drift, 24px), 106vh, 0) rotate(540deg);
+  }
+}
+.shard {
+  position: absolute;
+  top: 0;
+  animation: shard-fall 11s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shard {
+    display: none;
+  }
 }
 
 /* 漂落樱花花瓣（仅二次元主题渲染，见 components/Petals.jsx） */

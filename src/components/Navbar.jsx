@@ -1,7 +1,7 @@
 import { profile } from '../data/site'
 import { useLang } from '../i18n'
 import { LANGS } from '../i18n/ui'
-import { MailIcon, MoonIcon, SidebarIcon, SparklesIcon } from './Icons'
+import { MailIcon, MaskIcon, MoonIcon, SidebarIcon, SparklesIcon } from './Icons'
 
 /**
  * 顶部导航：毛玻璃细线条
@@ -35,20 +35,25 @@ export default function Navbar({ spineOpen, onToggleSpine }) {
             <SidebarIcon className="size-4" />
           </button>
 
-          {/* 主题切换：墨与冰 ⇄ 二次元清新（图标 = 可切换到的那个主题） */}
+          {/* 主题轮换：墨与冰 → 二次元清新 → 怪盗红 → 循环（图标 = 下一个主题） */}
           <button
             type="button"
-            onClick={() => setTheme(theme === 'ink' ? 'moe' : 'ink')}
-            aria-pressed={theme === 'moe'}
+            onClick={() => setTheme(theme === 'ink' ? 'moe' : theme === 'moe' ? 'p5' : 'ink')}
             aria-label={t.toggleTheme}
             title={t.toggleTheme}
             className={`hidden rounded-full border border-border p-1.5 transition-colors sm:block ${
-              theme === 'moe'
+              theme !== 'ink'
                 ? 'text-accent'
                 : 'text-text-secondary hover:border-accent/50 hover:text-text-primary'
             }`}
           >
-            {theme === 'ink' ? <SparklesIcon className="size-4" /> : <MoonIcon className="size-4" />}
+            {theme === 'ink' ? (
+              <SparklesIcon className="size-4" />
+            ) : theme === 'moe' ? (
+              <MaskIcon className="size-4" />
+            ) : (
+              <MoonIcon className="size-4" />
+            )}
           </button>
 
           <a

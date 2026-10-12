@@ -1,5 +1,6 @@
 import Reveal from './Reveal'
 import Petals from './Petals'
+import Shards from './Shards'
 import { profile, tr } from '../data/site'
 import { useLang } from '../i18n'
 import { fill } from '../i18n/ui'
@@ -30,6 +31,31 @@ export default function Hero() {
       >
         <Petals />
       </div>
+
+      {/* 怪盗红：斜切红杠穿过 + 飘落碎片 */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 hidden p5:block overflow-hidden"
+      >
+        <div className="absolute -left-12 top-[13%] h-9 w-[130%] -rotate-6 bg-accent" />
+        <div className="absolute -left-12 top-[19%] h-2.5 w-[130%] -rotate-6 bg-accent/50" />
+        <div className="absolute -left-12 bottom-[10%] h-20 w-[130%] rotate-3 bg-accent/10" />
+        <Shards />
+      </div>
+
+      {/* 怪盗红：黄芯星芒贴纸（P5 的尖角爆炸框） */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 200 200"
+        className="pointer-events-none absolute right-[-3%] top-14 -z-10 hidden size-36 p5:block md:size-52"
+      >
+        <polygon
+          points="195,100 167.6,118.1 182.3,147.5 149.5,149.5 147.5,182.3 118.1,167.6 100,195 81.9,167.6 52.5,182.3 50.5,149.5 17.7,147.5 32.4,118.1 5,100 32.4,81.9 17.7,52.5 50.5,50.5 52.5,17.7 81.9,32.4 100,5 118.1,32.4 147.5,17.7 149.5,50.5 182.3,52.5 167.6,81.9"
+          style={{ fill: 'var(--color-accent)' }}
+          transform="rotate(10 100 100)"
+        />
+        <circle cx="100" cy="100" r="14" fill="#ffd84d" />
+      </svg>
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-6 md:px-10 lg:data-[spine=open]:pl-36 xl:data-[spine=open]:pl-0">
         <div>
@@ -77,13 +103,13 @@ export default function Hero() {
             {/* 全站唯一一处成片实色强调色 */}
             <a
               href="#projects"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition hover:opacity-90"
+              className="p5-skew rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition hover:opacity-90"
             >
               {t.viewProjects}
             </a>
             <a
               href={`mailto:${profile.email}`}
-              className="rounded-full border border-border px-6 py-3 text-sm text-text-secondary transition-colors hover:border-accent/50 hover:text-text-primary"
+              className="p5-skew rounded-full border border-border px-6 py-3 text-sm text-text-secondary transition-colors hover:border-accent/50 hover:text-text-primary"
             >
               {t.writeEmail}
             </a>
