@@ -20,7 +20,7 @@ for (const { code } of LANGS) {
 }
 
 // 数据文件的多语言字段也做同样校验
-const { profile, projects, sections } = await import('../src/data/site.js')
+const { profile, projects, gallery, sections } = await import('../src/data/site.js')
 const LANG_CODES = LANGS.map((l) => l.code)
 
 function checkValue(name, value) {
@@ -41,6 +41,7 @@ projects.forEach((p, i) => {
   checkValue(`projects[${i}].description`, p.description)
   p.tags.forEach((t, j) => checkValue(`projects[${i}].tags[${j}]`, t))
 })
+gallery.forEach((g, i) => checkValue(`gallery[${i}].title`, g.title))
 sections.forEach((s, i) => checkValue(`sections[${i}].label`, s.label))
 
 if (failed) {

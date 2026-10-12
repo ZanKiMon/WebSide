@@ -61,6 +61,9 @@ export function LangProvider({ children }) {
       /* 忽略存储失败 */
     }
     document.documentElement.dataset.theme = theme
+    // 同步 html 内联背景：预设脚本设置过，切换主题时也要跟着更新/清除，避免 overscroll 露出旧色
+    document.documentElement.style.backgroundColor =
+      theme === 'moe' ? '#fafcff' : theme === 'ink' ? '#090a0c' : ''
   }, [theme])
 
   const value = useMemo(() => ({ lang, setLang, t: ui[lang], theme, setTheme }), [lang, theme])

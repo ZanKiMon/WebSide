@@ -80,17 +80,17 @@ body {
     radial-gradient(closest-side, rgba(150, 205, 255, 0.32), transparent 62%);
 }
 
-/* Hero 主视觉背景图：半透明铺满 Hero，cover 等比裁切不变形
+/* Hero 主视觉背景图：全屏铺满当页面背景，cover 等比裁切不变形
    换图只需替换 src/assets/kv-bg.webp 这一个文件 */
 .kv-bg {
   background-image: url('./assets/kv-bg.webp');
   background-size: cover;
-  background-position: center 20%; /* 偏向上部：多露出树冠与人物上半身 */
+  background-position: center 20%; /* 偏向上部：多露出树冠与画面主体 */
   background-repeat: no-repeat;
-  opacity: 0.32; /* 二次元浅色主题下的透明度 */
+  opacity: 0.75; /* 二次元浅色主题下明亮可见（像参考站的背景媒体） */
 }
 [data-theme='ink'] .kv-bg {
-  opacity: 0.15; /* 墨与冰深色主题下更淡，只留一点暖意 */
+  opacity: 0.4; /* 墨与冰深色主题下调暗，靠渐变罩压出文字可读性 */
 }
 
 /* 漂落樱花花瓣（仅二次元主题渲染，见 components/Petals.jsx） */

@@ -16,7 +16,7 @@ export default function Navbar({ spineOpen, onToggleSpine }) {
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
       <nav
         aria-label={t.navLabel}
-        className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6 md:px-10"
+        className="mx-auto flex h-16 w-full max-w-4xl items-center justify-between px-4 sm:px-6 lg:group-data-[spine=open]:pl-36 xl:group-data-[spine=open]:pl-0"
       >
         <div className="flex items-center gap-4">
           {/* 侧边导航开关：纯图标，开启时亮强调色 */}
@@ -66,6 +66,13 @@ export default function Navbar({ spineOpen, onToggleSpine }) {
             className="relative text-sm text-text-secondary transition-colors after:absolute after:mt-1 after:block after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-text-primary hover:after:scale-x-100"
           >
             {t.navProjects}
+          </a>
+          {/* 图库链接：窄屏隐藏（手机靠滚动浏览，避免日韩长词撑爆导航栏） */}
+          <a
+            href="#gallery"
+            className="relative hidden text-sm text-text-secondary transition-colors after:absolute after:mt-1 after:block after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-text-primary hover:after:scale-x-100 md:inline"
+          >
+            {t.galleryTitle}
           </a>
           <a
             href={`mailto:${profile.email}`}

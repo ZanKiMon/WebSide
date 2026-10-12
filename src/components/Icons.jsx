@@ -75,6 +75,26 @@ export function SparklesIcon({ className = 'size-4' }) {
   )
 }
 
+/** 照片（图库占位封面） */
+export function ImageIcon({ className = 'size-4' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <circle cx="8.5" cy="9.5" r="1.5" />
+      <path d="m21 15-3.9-3.9a2 2 0 0 0-2.8 0L6 19.5" />
+    </svg>
+  )
+}
+
 /** ↗ 外链箭头 */
 export function ArrowIcon({ className = 'size-4' }) {
   return (

@@ -18,7 +18,7 @@ export default function ProjectCard({ project, index }) {
     <Reveal delay={(index % 2) * 75} className="h-full">
       <Tag
         {...(href ? { href, target: '_blank', rel: 'noreferrer' } : {})}
-        className="group flex h-full flex-col rounded-xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-accent/40 hover:bg-surface-hover md:p-8 moe:rounded-2xl moe:shadow-[0_6px_24px_rgba(184,69,111,0.08)]"
+        className="group flex h-full flex-col rounded-xl border border-border bg-surface/80 p-6 shadow-lg shadow-black/5 backdrop-blur-md transition-colors duration-300 hover:border-accent/40 hover:bg-surface-hover/90 md:p-8 moe:rounded-2xl moe:shadow-[0_6px_24px_rgba(184,69,111,0.08)]"
       >
         {/* 首行：序号 + 外链箭头 */}
         <div className="flex items-center justify-between">

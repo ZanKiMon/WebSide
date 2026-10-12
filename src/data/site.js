@@ -18,19 +18,21 @@ export const tr = (value, lang) =>
 export const profile = {
   /** 网名（不翻译） */
   name: 'Kimoe Han',
-  /** 一句话简介（Hero 区大标题下面那段） */
+  /** 头像图片路径（放到 src/assets/ 后填 './assets/xxx.jpg'；留空则显示名字首字母圆形徽标） */
+  avatar: '',
+  /** 一句话签名（Hero 区大标题下面那段） */
   tagline: {
     zh: '网络工程专业在读，来自中国广东。喜欢把想法拆成一行行可运行的东西——写一些小工具，也折腾服务器与网络。',
     ja: '中国・広東出身のネットワーク工学専攻の学生。アイデアを実際に動くものに変えるのが好きです——小さなツール作りから、サーバーやネットワークの実験まで。',
     ko: '중국 광둥 출신 네트워크 공학 재학생. 아이디어를 실제로 동작하는 것으로 만드는 것을 좋아합니다——작은 도구부터 서버와 네트워크 다루기까지.',
     en: 'Network engineering student from Guangdong, China. I like breaking ideas down into things that run — small tools, servers, and networks.',
   },
-  /** 补充介绍（预留，后续做「关于我」区块时使用） */
+  /** 个人资料卡里的自我介绍 */
   bio: {
-    zh: '来自中国广东，目前主修网络工程。平时喜欢研究网络协议、折腾服务器，也会写一些小工具和网站。',
-    ja: '中国・広東省出身で、現在はネットワーク工学を専攻しています。ネットワークプロトコルの研究やサーバーいじりが好きで、小さなツールやウェブサイトも作っています。',
-    ko: '중국 광둥 출신이며 현재 네트워크 공학을 전공하고 있습니다. 네트워크 프로토콜 연구와 서버 다루기를 좋아하고, 작은 도구와 웹사이트도 만듭니다.',
-    en: 'From Guangdong, China, majoring in network engineering. I enjoy studying network protocols, tinkering with servers, and building small tools and websites.',
+    zh: '是一个网络工程的学生吖~ 平时喜欢研究网络协议、折腾服务器，也会写一些小工具和网站。\n在这里记录简简单单的日常和折腾笔记，希望可以帮到你吖~',
+    ja: 'ネットワーク工学の学生です。プロトコルの研究やサーバーいじりが好きで、小さなツールやサイトも作っています。\nここに日々の記録と作業メモを残しています。お役に立てれば嬉しいです～',
+    ko: '네트워크 공학을 공부하는 학생이에요~ 프로토콜 연구와 서버 만지기를 좋아하고, 작은 도구와 웹사이트도 만듭니다.\n여기에 소소한 일상과 삽질 기록을 남깁니다. 도움이 되면 좋겠어요~',
+    en: "A network engineering student. I enjoy studying protocols, tinkering with servers, and building small tools and websites.\nThis is where I keep my everyday notes and experiments — hope they help you out~",
   },
   location: { zh: '中国广东', ja: '中国・広東', ko: '중국 광둥', en: 'Guangdong, China' },
   major: { zh: '网络工程', ja: 'ネットワーク工学', ko: '네트워크 공학', en: 'Network Engineering' },
@@ -39,18 +41,34 @@ export const profile = {
 }
 
 /**
- * 项目列表 —— 卡片按数组顺序渲染
- *
- * ⚠️ 除了第一个，下面目前都是【示例占位项目】，把 placeholder 改为 false 或直接替换成你的真实项目：
- *   - title:       项目名（四语言）
- *   - subtitle:    英文装饰副标（大写等宽字显示，不翻译）
- *   - description: 一两句话介绍（四语言）
- *   - tags:        技术标签（英文标签直接写字符串，中文标签用四语言对象）
- *   - year:        年份
- *   - link:        演示/详情链接（没有就留空字符串，卡片就不会渲染成超链接）
- *   - repo:        仓库链接（没有就留空字符串）
- *   - placeholder: true 时卡片会显示「施工中 WIP」小徽章
+ * 瞬间说说 —— 随手记录的心情，按数组顺序显示（新的在上）
+ *   - text: 说说内容，支持换行（直接在字符串里按回车写）
+ *   - date: 显示的日期时间（自己填写，格式随意）
+ *   - placeholder: true 时显示低调的「示例」角标，记得替换成你自己的内容
  */
+export const moments = [
+  {
+    text: '网站今天正式上线啦！\n以后这里会记录我的日常、折腾笔记和各种各样的奇思妙想 (⁠´⁠▽⁠`⁠)ﾉ',
+    date: '10-12 12:00',
+    /** ISO 时间（可选）：给 <time datetime> 用的机器可读格式 */
+    datetime: '2026-10-12T12:00:00',
+    placeholder: true,
+  },
+]
+
+/**
+ * 图库 —— 相册分类卡片（照片以后自己往 src/assets/ 里放）
+ *   - title: 相册名
+ *   - count: 照片数量（自己填写）
+ *   - cover: 封面图路径（如 './assets/gallery-xxx.jpg'；留空则显示占位渐变）
+ */
+export const gallery = [
+  { title: { zh: '日常随拍', ja: '日常スナップ', ko: '일상 스냅', en: 'Daily Shots' }, count: 12, cover: '' },
+  { title: { zh: '折腾记录', ja: '作業記録', ko: '작업 기록', en: 'Tinkering' }, count: 8, cover: '' },
+  { title: { zh: '风景收藏', ja: '風景コレクション', ko: '풍경 모음', en: 'Scenery' }, count: 5, cover: '' },
+]
+
+/** 项目列表（卡片按数组顺序渲染，字段含义见各项注释） */
 export const projects = [
   {
     title: {
@@ -61,10 +79,10 @@ export const projects = [
     },
     subtitle: 'PORTFOLIO SITE',
     description: {
-      zh: '你现在看到的这个网站——React + Tailwind CSS 构建的响应式深色主题单页。',
+      zh: '你现在看到的这个网站——React + Tailwind CSS 构建的深色主题单页。',
       ja: '今見ているこのサイト。React + Tailwind CSS で作ったレスポンシブなダークテーマのシングルページです。',
       ko: '지금 보고 있는 이 사이트. React + Tailwind CSS로 만든 반응형 다크 테마 싱글 페이지입니다.',
-      en: 'The site you are looking at — a responsive dark-theme single page built with React + Tailwind CSS.',
+      en: 'The site you are looking at — a responsive single page built with React + Tailwind CSS.',
     },
     tags: ['React', 'Tailwind CSS', 'Vite'],
     year: '2026',
@@ -134,6 +152,11 @@ export const projects = [
   },
 ]
 
+/** 站点元信息：上线日期（页脚「运行天数」从这里算起，格式 YYYY-MM-DD） */
+export const siteMeta = {
+  launchDate: '2026-10-12',
+}
+
 /**
  * 页面区块目录 —— 顶部导航与「冰棱页脊」都由这里驱动
  * 新增区块时：在这里加一行，再在 App.jsx 里渲染对应 section 即可
@@ -141,5 +164,6 @@ export const projects = [
 export const sections = [
   { id: 'hero', num: '00', label: { zh: '首页', ja: 'ホーム', ko: '홈', en: 'Home' } },
   { id: 'projects', num: '01', label: { zh: '项目', ja: 'プロジェクト', ko: '프로젝트', en: 'Projects' } },
-  { id: 'contact', num: '02', label: { zh: '联系', ja: '連絡', ko: '연락', en: 'Contact' } },
+  { id: 'gallery', num: '02', label: { zh: '图库', ja: 'フォト', ko: '갤러리', en: 'Gallery' } },
+  { id: 'contact', num: '03', label: { zh: '联系', ja: '連絡', ko: '연락', en: 'Contact' } },
 ]
