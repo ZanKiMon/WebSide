@@ -18,7 +18,7 @@ export const tr = (value, lang) =>
 export const profile = {
   /** 网名（不翻译） */
   name: 'Kimoe Han',
-  /** 头像图片路径（放到 src/assets/ 后填 './assets/xxx.jpg'；留空则显示名字首字母圆形徽标） */
+  /** 头像图片路径（放到 public/assets/ 后填 './assets/xxx.jpg'；留空则显示名字首字母圆形徽标） */
   avatar: '',
   /** 打字机签名（Hero 大标题下面那行打字效果，短一点效果最好） */
   signature: {
@@ -64,10 +64,11 @@ export const moments = [
 ]
 
 /**
- * 图库 —— 照片墙（图片放 src/assets/ 后在这里填路径，按数组顺序显示）
+ * 图库 —— 照片墙（图片放 public/assets/ 后在这里填路径，按数组顺序显示）
  *   - src:   缩略图路径（网格里显示的小图，建议宽 640px）
  *   - full:  点击放大后的原图路径（省略则点击时直接用 src）
  *   - title: 可选的小标题/日期（不填就不显示标题栏）
+ * 注意：媒体文件一律放 portfolio/public/assets/ 目录，填 './assets/文件名' 即可
  */
 export const gallery = [
   { src: './assets/gallery-01-thumb.webp', full: './assets/gallery-01.webp', title: '2025-01-01' },
