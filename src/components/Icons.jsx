@@ -75,6 +75,25 @@ export function SparklesIcon({ className = 'size-4' }) {
   )
 }
 
+/** 银杏叶（切到银杏秋日主题） */
+export function LeafIcon({ className = 'size-4' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 21v-5" />
+      <path d="M12 16C6.5 16 4 10.5 3.5 5 9 4 11 7 12 9.5 13 7 15 4 20.5 5 20 10.5 17.5 16 12 16Z" />
+    </svg>
+  )
+}
+
 /** ↗ 外链箭头 */
 export function ArrowIcon({ className = 'size-4' }) {
   return (

@@ -42,11 +42,13 @@
         var theme = 'ink'
         try {
           var s = localStorage.getItem('kimoe-theme')
-          if (s === 'moe' || s === 'ink') theme = s
+          if (s === 'moe' || s === 'ink' || s === 'autumn') theme = s
         } catch (e) {}
         document.documentElement.dataset.theme = theme
         if (theme === 'moe') {
           document.documentElement.style.backgroundColor = '#fafcff'
+        } else if (theme === 'autumn') {
+          document.documentElement.style.backgroundColor = '#fff9ec'
         }
       })()
     </script>
