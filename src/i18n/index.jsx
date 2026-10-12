@@ -30,7 +30,7 @@ function detectLang() {
 function detectTheme() {
   try {
     const saved = localStorage.getItem(THEME_KEY)
-    if (saved === 'ink' || saved === 'moe' || saved === 'autumn') return saved
+    if (saved === 'ink' || saved === 'moe') return saved
   } catch {
     /* 存储不可用时用默认主题 */
   }

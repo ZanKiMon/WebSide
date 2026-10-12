@@ -1,6 +1,5 @@
 import Reveal from './Reveal'
 import Petals from './Petals'
-import GinkgoLeaves from './GinkgoLeaves'
 import { profile, tr } from '../data/site'
 import { useLang } from '../i18n'
 import { fill } from '../i18n/ui'
@@ -24,38 +23,15 @@ export default function Hero() {
         className="hero-glow pointer-events-none absolute -top-40 right-[-10%] -z-10 size-[36rem] rounded-full"
       />
 
+      {/* 主视觉背景图：半透明铺在 Hero 上部，cover 等比裁切不变形（换图替换 src/assets/kv-bg.webp） */}
+      <div aria-hidden="true" className="kv-bg pointer-events-none absolute inset-0 -z-10" />
+
       {/* 漂落樱花花瓣：仅二次元清新主题显示 */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 hidden moe:block overflow-hidden"
       >
         <Petals />
-      </div>
-
-      {/* 银杏秋日场景：金黄天空 + 树冠光晕 + 阳光光斑 + 树干剪影 + 飘落银杏叶（纯 CSS/SVG 氛围复刻） */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 hidden autumn:block overflow-hidden"
-      >
-        {/* 金黄天空 */}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffdf8e_0%,#fff3cf_42%,#fffdf4_78%,#fff9ec_100%)]" />
-        {/* 树冠：顶部成片金黄圆晕 */}
-        <div className="absolute -top-24 -left-16 size-80 rounded-full bg-[#ffd44d] opacity-70 blur-3xl" />
-        <div className="absolute -top-32 left-1/4 size-96 rounded-full bg-[#ffcf3d] opacity-60 blur-3xl" />
-        <div className="absolute -top-20 right-1/4 size-72 rounded-full bg-[#ffd95e] opacity-70 blur-3xl" />
-        <div className="absolute -top-28 -right-10 size-80 rounded-full bg-[#f5c020] opacity-60 blur-3xl" />
-        {/* 阳光光斑 */}
-        <div className="absolute left-[18%] top-[12%] size-24 rounded-full bg-white/70 blur-2xl" />
-        <div className="absolute left-[55%] top-[6%] size-16 rounded-full bg-white/60 blur-xl" />
-        <div className="absolute right-[22%] top-[24%] size-20 rounded-full bg-[#fff7d6]/80 blur-2xl" />
-        {/* 树干剪影：暖棕竖条，近深远浅 */}
-        <div className="absolute bottom-0 left-[8%] h-[72%] w-10 rounded-t-full bg-[linear-gradient(180deg,rgba(214,178,110,0.35),rgba(160,124,60,0.5))]" />
-        <div className="absolute bottom-0 left-[30%] h-[64%] w-7 rounded-t-full bg-[linear-gradient(180deg,rgba(214,178,110,0.28),rgba(160,124,60,0.42))]" />
-        <div className="absolute bottom-0 right-[24%] h-[68%] w-9 rounded-t-full bg-[linear-gradient(180deg,rgba(214,178,110,0.3),rgba(160,124,60,0.45))]" />
-        <div className="absolute bottom-0 right-[6%] h-[60%] w-6 rounded-t-full bg-[linear-gradient(180deg,rgba(214,178,110,0.26),rgba(160,124,60,0.4))]" />
-        {/* 地面落叶毯 */}
-        <div className="absolute bottom-0 h-24 w-full bg-[linear-gradient(180deg,transparent,#f7d878)] opacity-80" />
-        <GinkgoLeaves />
       </div>
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-6 md:px-10 lg:data-[spine=open]:pl-36 xl:data-[spine=open]:pl-0">

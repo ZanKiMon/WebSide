@@ -7,7 +7,6 @@
  * moe:xxx 工具类（@custom-variant）只在二次元主题下生效，用于主题专属装饰
  */
 @custom-variant moe ([data-theme='moe'] &);
-@custom-variant autumn ([data-theme='autumn'] &);
 
 @theme {
   --font-sans: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
@@ -40,18 +39,6 @@
   color-scheme: light;
 }
 
-/* 「银杏秋日」浅色主题：金黄银杏林 × 暖阳光斑 × 米白（参考 event.vrccreative.net 主视觉的氛围） */
-[data-theme='autumn'] {
-  --color-background: #fff9ec;
-  --color-surface: #ffffff;
-  --color-surface-hover: #fff3d6;
-  --color-border: #f2e3be;
-  --color-text-primary: #4a4033;
-  --color-text-secondary: #6e6450;
-  --color-accent: #8f6a00;
-  color-scheme: light;
-}
-
 /* 基底 */
 body {
   @apply bg-background font-sans text-text-primary antialiased;
@@ -68,10 +55,6 @@ body {
 [data-theme='moe'] ::selection {
   background: #ffd3e0;
   color: #454050;
-}
-[data-theme='autumn'] ::selection {
-  background: #ffe08a;
-  color: #4a4033;
 }
 
 /* 键盘操作可见焦点（随主题取强调色） */
@@ -96,8 +79,18 @@ body {
     radial-gradient(closest-side, rgba(255, 170, 200, 0.4), transparent 70%),
     radial-gradient(closest-side, rgba(150, 205, 255, 0.32), transparent 62%);
 }
-[data-theme='autumn'] .hero-glow {
-  background: radial-gradient(closest-side, rgba(255, 201, 60, 0.5), transparent 70%);
+
+/* Hero 主视觉背景图：半透明铺满 Hero，cover 等比裁切不变形
+   换图只需替换 src/assets/kv-bg.webp 这一个文件 */
+.kv-bg {
+  background-image: url('./assets/kv-bg.webp');
+  background-size: cover;
+  background-position: center 20%; /* 偏向上部：多露出树冠与人物上半身 */
+  background-repeat: no-repeat;
+  opacity: 0.32; /* 二次元浅色主题下的透明度 */
+}
+[data-theme='ink'] .kv-bg {
+  opacity: 0.15; /* 墨与冰深色主题下更淡，只留一点暖意 */
 }
 
 /* 漂落樱花花瓣（仅二次元主题渲染，见 components/Petals.jsx） */
