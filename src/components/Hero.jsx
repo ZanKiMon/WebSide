@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import Petals from './Petals'
 import { profile, tr } from '../data/site'
 import { useLang } from '../i18n'
 import { fill } from '../i18n/ui'
@@ -16,11 +17,19 @@ export default function Hero() {
       id="hero"
       className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden border-b border-border"
     >
-      {/* 冰面反光光晕（纯 CSS，克制到 6% 透明度） */}
+      {/* 主题光晕（墨与冰=极淡冰面反光；二次元=樱粉+水蓝双光晕），见 index.css 的 .hero-glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 size-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(110,231,216,0.06),transparent)]"
+        className="hero-glow pointer-events-none absolute -top-40 right-[-10%] -z-10 size-[36rem] rounded-full"
       />
+
+      {/* 漂落樱花花瓣：仅二次元清新主题显示 */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 hidden moe:block overflow-hidden"
+      >
+        <Petals />
+      </div>
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-6 md:px-10 lg:data-[spine=open]:pl-36 xl:data-[spine=open]:pl-0">
         <div>

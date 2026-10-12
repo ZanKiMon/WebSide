@@ -36,6 +36,20 @@
         document.title = titles[lang]
       })()
     </script>
+    <!-- React 加载前预设主题，避免深色/浅色闪屏（与 src/i18n/index.jsx 同一套逻辑） -->
+    <script>
+      ;(function () {
+        var theme = 'ink'
+        try {
+          var s = localStorage.getItem('kimoe-theme')
+          if (s === 'moe' || s === 'ink') theme = s
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme
+        if (theme === 'moe') {
+          document.documentElement.style.backgroundColor = '#fafcff'
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

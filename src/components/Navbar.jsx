@@ -1,16 +1,16 @@
 import { profile } from '../data/site'
 import { useLang } from '../i18n'
 import { LANGS } from '../i18n/ui'
-import { MailIcon, SidebarIcon } from './Icons'
+import { MailIcon, MoonIcon, SidebarIcon, SparklesIcon } from './Icons'
 
 /**
  * 顶部导航：毛玻璃细线条
- * 最左侧为侧边导航开关（纯图标，仅 lg 显示——侧边导航本身仅宽屏存在）
+ * 最左侧为侧边导航开关 + 主题切换（纯图标）
  * 右侧为锚点链接 + 语言切换（中 / 日 / 한 / EN）
- * 360px 窄屏：联系只留图标，保证日韩长词不溢出
+ * 360px 窄屏：联系只留图标、主题切换 sm 起显示，保证日韩长词不溢出
  */
 export default function Navbar({ spineOpen, onToggleSpine }) {
-  const { lang, setLang, t } = useLang()
+  const { lang, setLang, t, theme, setTheme } = useLang()
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
@@ -33,6 +33,22 @@ export default function Navbar({ spineOpen, onToggleSpine }) {
             }`}
           >
             <SidebarIcon className="size-4" />
+          </button>
+
+          {/* 主题切换：墨与冰 ⇄ 二次元清新（图标 = 可切换到的那个主题） */}
+          <button
+            type="button"
+            onClick={() => setTheme(theme === 'ink' ? 'moe' : 'ink')}
+            aria-pressed={theme === 'moe'}
+            aria-label={t.toggleTheme}
+            title={t.toggleTheme}
+            className={`hidden rounded-full border border-border p-1.5 transition-colors sm:block ${
+              theme === 'moe'
+                ? 'text-accent'
+                : 'text-text-secondary hover:border-accent/50 hover:text-text-primary'
+            }`}
+          >
+            {theme === 'ink' ? <SparklesIcon className="size-4" /> : <MoonIcon className="size-4" />}
           </button>
 
           <a

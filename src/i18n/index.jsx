@@ -2,13 +2,14 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { ui, LANGS, HTML_LANG } from './ui'
 
 /**
- * 轻量多语言：Context + 词典，零外部依赖
- * - 初始语言：localStorage 记忆 → 浏览器语言探测 → 默认中文
- * - 切换时同步 <html lang> 与 document.title
+ * 轻量站点偏好：多语言 + 主题，零外部依赖
+ * - 语言：localStorage 记忆 → 浏览器语言探测 → 默认中文；切换时同步 <html lang> 与 document.title
+ * - 主题：'ink'（墨与冰，默认）/ 'moe'（二次元清新）；切换时同步 <html data-theme>
  */
 
 const LangContext = createContext(null)
 const STORAGE_KEY = 'kimoe-lang'
+const THEME_KEY = 'kimoe-theme'
 
 const SUPPORTED = LANGS.map((l) => l.code)
 
@@ -26,8 +27,19 @@ function detectLang() {
   return 'en'
 }
 
+function detectTheme() {
+  try {
+    const saved = localStorage.getItem(THEME_KEY)
+    if (saved === 'ink' || saved === 'moe') return saved
+  } catch {
+    /* 存储不可用时用默认主题 */
+  }
+  return 'ink'
+}
+
 export function LangProvider({ children }) {
   const [lang, setLang] = useState(detectLang)
+  const [theme, setTheme] = useState(detectTheme)
 
   useEffect(() => {
     try {
@@ -42,12 +54,21 @@ export function LangProvider({ children }) {
       ?.setAttribute('content', ui[lang].metaDescription)
   }, [lang])
 
-  const value = useMemo(() => ({ lang, setLang, t: ui[lang] }), [lang])
+  useEffect(() => {
+    try {
+      localStorage.setItem(THEME_KEY, theme)
+    } catch {
+      /* 忽略存储失败 */
+    }
+    document.documentElement.dataset.theme = theme
+  }, [theme])
+
+  const value = useMemo(() => ({ lang, setLang, t: ui[lang], theme, setTheme }), [lang, theme])
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>
 }
 
-/** 组件里取 { lang, setLang, t } —— t 是当前语言的文案对象 */
+/** 组件里取 { lang, setLang, t, theme, setTheme } —— t 是当前语言的文案对象 */
 export function useLang() {
   return useContext(LangContext)
 }

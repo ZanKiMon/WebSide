@@ -24,7 +24,7 @@ export default function Spine({ open = true }) {
       aria-label={t.spineLabel}
       className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
     >
-      <div className="flex flex-col gap-1 rounded-2xl border border-border bg-background/70 p-1.5 backdrop-blur-md">
+      <div className="flex flex-col gap-1 rounded-2xl border border-border bg-background/70 p-1.5 backdrop-blur-md moe:rounded-3xl moe:shadow-[0_8px_28px_rgba(184,69,111,0.12)]">
         {sections.map((s) => {
           const isActive = active === s.id
           return (

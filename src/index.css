@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
 /*
- * 「墨与冰 · Ink & Ice」主题（Tailwind v4 @theme 语义 token）
- * 全站颜色只允许从这里取：bg-background / bg-surface / border-border /
- * text-text-primary / text-text-secondary / text-accent
+ * 双主题：
+ * - 墨与冰 Ink & Ice（默认深色）：@theme 里的语义 token
+ * - 二次元清新（浅色）：[data-theme='moe'] 整体覆盖同名 token，所有工具类自动换肤
+ * moe:xxx 工具类（@custom-variant）只在二次元主题下生效，用于主题专属装饰
  */
+@custom-variant moe ([data-theme='moe'] &);
+
 @theme {
   --font-sans: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "Noto Sans SC", sans-serif;
@@ -20,20 +23,43 @@
   --color-accent: #6ee7d8; /* 唯一强调色：天青冰薄荷 */
 }
 
+:root {
+  color-scheme: dark;
+}
+
+/* 「二次元清新」浅色主题：樱粉 × 水蓝 × 云白（强调色取对两种底色都 ≥4.5:1 的覆盆子粉） */
+[data-theme='moe'] {
+  --color-background: #fafcff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fdf0f5;
+  --color-border: #f0e2ea;
+  --color-text-primary: #454050;
+  --color-text-secondary: #6e6780;
+  --color-accent: #b8456f;
+  color-scheme: light;
+}
+
 /* 基底 */
 body {
   @apply bg-background font-sans text-text-primary antialiased;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* 选中文字 = 出现一块冰 */
+/* 选中文字：墨与冰=一块冰，二次元=一块樱花饼 */
 ::selection {
   background: #6ee7d8;
   color: #090a0c;
 }
+[data-theme='moe'] ::selection {
+  background: #ffd3e0;
+  color: #454050;
+}
 
-/* 键盘操作可见焦点 */
+/* 键盘操作可见焦点（随主题取强调色） */
 :focus-visible {
-  outline: 2px solid #6ee7d8;
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -41,6 +67,36 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* Hero 光晕：墨与冰=右上角一枚极淡的冰面反光；二次元=樱粉+水蓝双光晕 */
+.hero-glow {
+  background: radial-gradient(closest-side, rgba(110, 231, 216, 0.06), transparent);
+}
+[data-theme='moe'] .hero-glow {
+  background:
+    radial-gradient(closest-side, rgba(255, 170, 200, 0.4), transparent 70%),
+    radial-gradient(closest-side, rgba(150, 205, 255, 0.32), transparent 62%);
+}
+
+/* 漂落樱花花瓣（仅二次元主题渲染，见 components/Petals.jsx） */
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -6vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(var(--drift, 24px), 106vh, 0) rotate(320deg);
+  }
+}
+.petal {
+  position: absolute;
+  top: 0;
+  animation: petal-fall 12s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .petal {
+    display: none;
   }
 }
 
