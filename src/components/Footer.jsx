@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" aria-labelledby="contact-title" className="scroll-mt-16 border-t border-border">
-      <div className="mx-auto w-full max-w-5xl px-6 py-20 md:px-10 md:py-28">
+      <div className="mx-auto w-full max-w-5xl px-6 py-20 md:px-10 md:py-28 lg:data-[spine=open]:pl-36 xl:data-[spine=open]:pl-0">
         <Reveal>
           <p lang="en" className="font-mono text-xs uppercase tracking-[0.3em] text-accent md:text-sm">
             02 — CONTACT

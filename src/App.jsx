@@ -30,7 +30,8 @@ export default function App() {
   }
 
   return (
-    <>
+    // data-spine：侧边导航开启时，1024–1279px 区间的页面内容自动向右让位（见各容器 lg:data-[spine=open] 类）
+    <div data-spine={spineOpen ? 'open' : 'closed'}>
       {/* 键盘用户跳转捷径 */}
       <a
         href="#projects"
@@ -48,6 +49,6 @@ export default function App() {
       </main>
 
       <Footer />
-    </>
+    </div>
   )
 }

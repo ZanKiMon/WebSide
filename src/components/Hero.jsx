@@ -22,7 +22,7 @@ export default function Hero() {
         className="pointer-events-none absolute -top-40 right-[-10%] -z-10 size-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(110,231,216,0.06),transparent)]"
       />
 
-      <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-6 md:px-10">
+      <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-6 md:px-10 lg:data-[spine=open]:pl-36 xl:data-[spine=open]:pl-0">
         <div>
           {/* 装饰性 kicker：与 profile.location 手工保持一致，刻意用英文缩写 */}
           <Reveal

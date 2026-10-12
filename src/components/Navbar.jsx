@@ -5,7 +5,7 @@ import { MailIcon, SidebarIcon } from './Icons'
 
 /**
  * 顶部导航：毛玻璃细线条
- * 最左侧为侧边导航开关（纯图标，仅 xl 显示——侧边导航本身仅宽屏存在）
+ * 最左侧为侧边导航开关（纯图标，仅 lg 显示——侧边导航本身仅宽屏存在）
  * 右侧为锚点链接 + 语言切换（中 / 日 / 한 / EN）
  * 360px 窄屏：联系只留图标，保证日韩长词不溢出
  */
@@ -26,7 +26,7 @@ export default function Navbar({ spineOpen, onToggleSpine }) {
             aria-pressed={spineOpen}
             aria-label={t.toggleSpine}
             title={t.toggleSpine}
-            className={`hidden rounded-full border border-border p-1.5 transition-colors xl:block ${
+            className={`hidden rounded-full border border-border p-1.5 transition-colors lg:block ${
               spineOpen
                 ? 'text-accent'
                 : 'text-text-secondary hover:border-accent/50 hover:text-text-primary'

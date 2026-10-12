@@ -15,7 +15,7 @@ export default function Projects() {
   return (
     // tabIndex=-1：让 skip link 点击后焦点能真正落到本区块
     <section id="projects" aria-labelledby="projects-title" tabIndex={-1} className="scroll-mt-16 outline-none">
-      <div className="mx-auto w-full max-w-5xl px-6 py-24 md:px-10 md:py-32">
+      <div className="mx-auto w-full max-w-5xl px-6 py-24 md:px-10 md:py-32 lg:data-[spine=open]:pl-36 xl:data-[spine=open]:pl-0">
         {/* 区块头：左 kicker + 标题，右计数 */}
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div>
