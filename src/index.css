@@ -9,8 +9,8 @@
 @custom-variant moe ([data-theme='moe'] &);
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-sans: "LXGW WenKai", ui-sans-serif, system-ui, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas,
     "Courier New", monospace;
 
@@ -129,5 +129,99 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .scroll-dot {
     animation: none;
+  }
+}
+
+/* 打字机签名行（借鉴 Sky Blog 主题的 subtitle effects）
+   用 clip-path 逐步显现，宽度自适应、中文英文都适用 */
+.typewriter {
+  animation: type-reveal 2.6s steps(26, end) 0.5s both;
+}
+@keyframes type-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 -2% 0 0);
+  }
+}
+.typewriter-caret {
+  border-right: 2px solid var(--color-accent);
+  animation: caret-blink 0.75s step-end infinite;
+}
+@keyframes caret-blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-accent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typewriter {
+    animation: none;
+  }
+  .typewriter-caret {
+    animation: none;
+  }
+}
+
+/* 标题发光粒子（借鉴 Sky Blog 主题的 title effects，简化为两粒）
+   用 accent 单色 + 白芯，缓慢漂移 */
+.title-orbit {
+  position: relative;
+}
+.title-orbit::before,
+.title-orbit::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 1;
+}
+.title-orbit::before {
+  width: 7px;
+  height: 7px;
+  top: -10px;
+  right: 18%;
+  background: radial-gradient(circle, #fff, var(--color-accent));
+  box-shadow:
+    0 0 8px #fff,
+    0 0 14px var(--color-accent);
+  opacity: 0.85;
+  animation: orbit-a 6s ease-in-out infinite alternate;
+}
+.title-orbit::after {
+  width: 5px;
+  height: 5px;
+  bottom: -8px;
+  left: 8%;
+  background: radial-gradient(circle, #fff, var(--color-accent));
+  box-shadow: 0 0 6px var(--color-accent);
+  opacity: 0.7;
+  animation: orbit-b 5s ease-in-out infinite alternate;
+}
+@keyframes orbit-a {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-24px, 14px);
+  }
+}
+@keyframes orbit-b {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(18px, -12px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .title-orbit::before,
+  .title-orbit::after {
+    animation: none;
+    opacity: 0.5;
   }
 }

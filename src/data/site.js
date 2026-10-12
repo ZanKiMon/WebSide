@@ -20,6 +20,13 @@ export const profile = {
   name: 'Kimoe Han',
   /** 头像图片路径（放到 src/assets/ 后填 './assets/xxx.jpg'；留空则显示名字首字母圆形徽标） */
   avatar: '',
+  /** 打字机签名（Hero 大标题下面那行打字效果，短一点效果最好） */
+  signature: {
+    zh: '在这里记录简简单单的日常和折腾笔记~',
+    ja: 'ここに日々の記録と作業メモをゆるゆる残していきます～',
+    ko: '여기에 소소한 일상과 기록을 남깁니다~',
+    en: 'Keeping simple notes of my days and experiments here~',
+  },
   /** 一句话签名（Hero 区大标题下面那段） */
   tagline: {
     zh: '网络工程专业在读，来自中国广东。喜欢把想法拆成一行行可运行的东西——写一些小工具，也折腾服务器与网络。',

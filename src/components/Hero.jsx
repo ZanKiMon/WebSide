@@ -49,13 +49,20 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delay={75}>
-          <h1 className="mt-5 text-4xl font-semibold leading-[1.15] drop-shadow-sm sm:text-5xl md:text-7xl">
+          <h1 className="title-orbit mt-5 text-4xl font-semibold leading-[1.15] drop-shadow-sm sm:text-5xl md:text-7xl">
             {t.hello}
             <br />
             <span lang="en">Kimoe Han</span>
             {t.nameSuffix}
             <span className="text-accent">{t.namePeriod}</span>
           </h1>
+        </Reveal>
+
+        {/* 打字机签名（借鉴 Sky Blog 主题的副标题效果） */}
+        <Reveal as="p" delay={140} className="mt-4">
+          <span className="typewriter typewriter-caret inline-block text-lg font-medium text-text-primary/85 md:text-xl">
+            {tr(profile.signature, lang)}
+          </span>
         </Reveal>
 
         <Reveal

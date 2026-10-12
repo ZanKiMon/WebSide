@@ -33,6 +33,7 @@ function checkValue(name, value) {
 }
 
 checkValue('profile.tagline', profile.tagline)
+checkValue('profile.signature', profile.signature)
 checkValue('profile.bio', profile.bio)
 checkValue('profile.location', profile.location)
 checkValue('profile.major', profile.major)
