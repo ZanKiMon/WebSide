@@ -19,6 +19,25 @@ export function MailIcon({ className = 'size-4' }) {
   )
 }
 
+/** 左侧面板图标（侧边导航开关） */
+export function SidebarIcon({ className = 'size-4' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M9 4v16" />
+    </svg>
+  )
+}
+
 /** ↗ 外链箭头 */
 export function ArrowIcon({ className = 'size-4' }) {
   return (

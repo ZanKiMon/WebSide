@@ -1,14 +1,15 @@
 import { profile } from '../data/site'
 import { useLang } from '../i18n'
 import { LANGS } from '../i18n/ui'
-import { MailIcon } from './Icons'
+import { MailIcon, SidebarIcon } from './Icons'
 
 /**
  * 顶部导航：毛玻璃细线条
- * 右侧为锚点链接 + 语言切换（中 / 日 / 한 / EN，当前语言亮强调色）
- * 360px 窄屏：联系只留图标、间距收紧，保证 ja/ko 长词也不溢出
+ * 最左侧为侧边导航开关（纯图标，仅 xl 显示——侧边导航本身仅宽屏存在）
+ * 右侧为锚点链接 + 语言切换（中 / 日 / 한 / EN）
+ * 360px 窄屏：联系只留图标，保证日韩长词不溢出
  */
-export default function Navbar() {
+export default function Navbar({ spineOpen, onToggleSpine }) {
   const { lang, setLang, t } = useLang()
 
   return (
@@ -17,13 +18,31 @@ export default function Navbar() {
         aria-label={t.navLabel}
         className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6 md:px-10"
       >
-        <a
-          href="#hero"
-          lang="en"
-          className="text-sm font-medium transition-colors hover:text-accent"
-        >
-          <span className="text-accent">K.</span> Kimoe Han
-        </a>
+        <div className="flex items-center gap-4">
+          {/* 侧边导航开关：纯图标，开启时亮强调色 */}
+          <button
+            type="button"
+            onClick={onToggleSpine}
+            aria-pressed={spineOpen}
+            aria-label={t.toggleSpine}
+            title={t.toggleSpine}
+            className={`hidden rounded-full border border-border p-1.5 transition-colors xl:block ${
+              spineOpen
+                ? 'text-accent'
+                : 'text-text-secondary hover:border-accent/50 hover:text-text-primary'
+            }`}
+          >
+            <SidebarIcon className="size-4" />
+          </button>
+
+          <a
+            href="#hero"
+            lang="en"
+            className="text-sm font-medium transition-colors hover:text-accent"
+          >
+            <span className="text-accent">K.</span> Kimoe Han
+          </a>
+        </div>
 
         <div className="flex items-center gap-2.5 md:gap-8">
           <a
