@@ -1,4 +1,6 @@
 import Reveal from './Reveal'
+import { tr } from '../data/site'
+import { useLang } from '../i18n'
 import { ArrowIcon } from './Icons'
 
 /**
@@ -7,7 +9,8 @@ import { ArrowIcon } from './Icons'
  * 没有真实链接的卡片渲染为 <article>，绝不放假链接
  */
 export default function ProjectCard({ project, index }) {
-  const { title, en, description, tags, year, link, repo, placeholder } = project
+  const { lang, t } = useLang()
+  const { title, subtitle, description, tags, year, link, repo, placeholder } = project
   const href = link || repo
   const Tag = href ? 'a' : 'article'
 
@@ -25,35 +28,35 @@ export default function ProjectCard({ project, index }) {
           {href && (
             <>
               <ArrowIcon className="size-4 text-text-secondary transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
-              <span className="sr-only">（在新标签页打开）</span>
+              <span className="sr-only">{t.newTab}</span>
             </>
           )}
         </div>
 
         {/* 标题 + 英文装饰副标 */}
-        <h3 className="mt-5 text-xl font-medium md:text-2xl">{title}</h3>
+        <h3 className="mt-5 text-xl font-medium md:text-2xl">{tr(title, lang)}</h3>
         <p lang="en" className="mt-1.5 font-mono text-xs uppercase tracking-widest text-text-secondary">
-          {en}
+          {subtitle}
         </p>
 
         {/* 描述 */}
         <p className="mt-3 text-sm leading-relaxed text-text-secondary md:text-base">
-          {description}
+          {tr(description, lang)}
         </p>
 
         {/* 底行：标签 + WIP 徽章 + 年份 */}
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-6">
-          {tags.map((t) => (
+          {tags.map((tag) => (
             <span
-              key={t}
+              key={typeof tag === 'string' ? tag : tag.en}
               className="rounded-full border border-border px-2.5 py-1 font-mono text-xs tracking-wider text-text-secondary"
             >
-              {t}
+              {tr(tag, lang)}
             </span>
           ))}
           {placeholder && (
             <span className="rounded-full bg-accent/10 px-2.5 py-1 font-mono text-xs tracking-wider text-accent">
-              施工中 WIP
+              {t.wip}
             </span>
           )}
           <span className="ml-auto font-mono text-xs text-text-secondary">{year}</span>

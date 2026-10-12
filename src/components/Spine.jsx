@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
-import { sections } from '../data/site'
+import { sections, tr } from '../data/site'
+import { useLang } from '../i18n'
 import useActiveSection from '../hooks/useActiveSection'
 
 /**
@@ -9,6 +10,7 @@ import useActiveSection from '../hooks/useActiveSection'
  * 纯装饰，aria-hidden；键盘用户走顶部导航
  */
 export default function Spine() {
+  const { lang } = useLang()
   // useMemo 固定引用：否则每次渲染都是新数组，会反复销毁重建 IntersectionObserver
   const ids = useMemo(() => sections.map((s) => s.id), [])
   const active = useActiveSection(ids)
@@ -36,7 +38,7 @@ export default function Spine() {
                 active === s.id ? 'text-accent' : 'text-text-secondary'
               }`}
             >
-              {s.num} · {s.label}
+              {s.num} · {tr(s.label, lang)}
             </span>
           </div>
         ))}

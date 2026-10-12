@@ -1,11 +1,15 @@
 import Reveal from './Reveal'
-import { profile } from '../data/site'
+import { profile, tr } from '../data/site'
+import { useLang } from '../i18n'
+import { fill } from '../i18n/ui'
 
 /**
  * Hero 区：大标题 + 简介 + 状态行 + CTA + 滚动指示
  * 全站唯一装饰是右上角那一枚冰面反光光晕
  */
 export default function Hero() {
+  const { lang, t } = useLang()
+
   return (
     // isolate 创建层叠上下文：否则 -z-10 的光晕会画在不透明 body 背景之下，永远不可见
     <section
@@ -20,6 +24,7 @@ export default function Hero() {
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-6 md:px-10">
         <div>
+          {/* 装饰性 kicker：与 profile.location 手工保持一致，刻意用英文缩写 */}
           <Reveal
             as="p"
             lang="en"
@@ -30,10 +35,11 @@ export default function Hero() {
 
           <Reveal delay={75}>
             <h1 className="mt-6 text-4xl font-semibold leading-[1.15] sm:text-5xl md:text-7xl">
-              你好，我是
+              {t.hello}
               <br />
               <span lang="en">Kimoe Han</span>
-              <span className="text-accent">。</span>
+              {t.nameSuffix}
+              <span className="text-accent">{t.namePeriod}</span>
             </h1>
           </Reveal>
 
@@ -42,7 +48,7 @@ export default function Hero() {
             delay={150}
             className="mt-8 max-w-xl text-base leading-loose text-text-secondary md:text-lg"
           >
-            {profile.tagline}
+            {tr(profile.tagline, lang)}
           </Reveal>
 
           <Reveal delay={225} className="mt-6 flex items-center gap-2.5">
@@ -51,7 +57,10 @@ export default function Hero() {
               className="size-2 animate-pulse rounded-full bg-accent motion-reduce:animate-none"
             />
             <span className="font-mono text-xs tracking-wider text-text-secondary">
-              {profile.major}在读 · {profile.location} · GMT+8
+              {fill(t.statusLine, {
+                major: tr(profile.major, lang),
+                location: tr(profile.location, lang),
+              })}
             </span>
           </Reveal>
 
@@ -61,13 +70,13 @@ export default function Hero() {
               href="#projects"
               className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition hover:opacity-90"
             >
-              看项目 ↓
+              {t.viewProjects}
             </a>
             <a
               href={`mailto:${profile.email}`}
               className="rounded-full border border-border px-6 py-3 text-sm text-text-secondary transition-colors hover:border-accent/50 hover:text-text-primary"
             >
-              写封邮件
+              {t.writeEmail}
             </a>
           </Reveal>
         </div>
@@ -75,7 +84,7 @@ export default function Hero() {
 
       {/* 底部滚动指示 */}
       <Reveal delay={400} className="flex flex-col items-center gap-3 pb-10">
-        <span className="font-mono text-xs tracking-[0.3em] text-text-secondary">向下滚动</span>
+        <span className="font-mono text-xs tracking-[0.3em] text-text-secondary">{t.scrollDown}</span>
         <span aria-hidden="true" className="relative h-8 w-px overflow-hidden bg-border">
           <span className="scroll-dot absolute left-0 top-0 h-3 w-px bg-accent" />
         </span>

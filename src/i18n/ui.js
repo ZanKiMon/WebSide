@@ -1,0 +1,129 @@
+/**
+ * 界面文案词典：所有 UI 层的固定文案都在这里，zh / ja / ko / en 各一份
+ * 数据类内容（个人信息、项目）不在这里 —— 那些在 src/data/site.js 里多语言化
+ *
+ * 占位符语法：'{count} 个'，用 fill() 填充
+ */
+
+/** 把 '{key}' 占位符替换为 vars 里的值 */
+export function fill(template, vars) {
+  return template.replace(/\{(\w+)\}/g, (match, key) => (key in vars ? vars[key] : match))
+}
+
+/** 支持的语言（short 用于导航栏切换按钮） */
+export const LANGS = [
+  { code: 'zh', short: '中' },
+  { code: 'ja', short: '日' },
+  { code: 'ko', short: '한' },
+  { code: 'en', short: 'EN' },
+]
+
+/** 各语言对应的 <html lang> 值 */
+export const HTML_LANG = { zh: 'zh-CN', ja: 'ja', ko: 'ko', en: 'en' }
+
+export const ui = {
+  zh: {
+    pageTitle: 'Kimoe Han · 个人作品集',
+    metaDescription: 'Kimoe Han 的个人作品集 — 网络工程 · 中国广东',
+    navLabel: '主导航',
+    langGroupLabel: '切换语言',
+    navProjects: '项目',
+    navContact: '联系',
+    skipToProjects: '跳到项目',
+    hello: '你好，我是',
+    nameSuffix: '',
+    namePeriod: '。',
+    statusLine: '{major}在读 · {location} · GMT+8',
+    viewProjects: '看项目 ↓',
+    writeEmail: '写封邮件',
+    scrollDown: '向下滚动',
+    projectsTitle: '项目与练习',
+    projectsMeta: '共 {count} 个 · 更多在路上',
+    wip: '施工中 WIP',
+    orphanCell: '＋ 下一个项目，正在路上',
+    footerLead: '有想法？写封',
+    footerAccent: '邮件',
+    footerTail: '给我。',
+    copyright: '© {year} {name} · {location}',
+    backToTop: '回到顶部 ↑',
+    newTab: '（在新标签页打开）',
+  },
+  ja: {
+    pageTitle: 'Kimoe Han · ポートフォリオ',
+    metaDescription: 'Kimoe Han のポートフォリオ — ネットワーク工学 · 中国広東',
+    navLabel: 'メインナビゲーション',
+    langGroupLabel: '言語切替',
+    navProjects: 'プロジェクト',
+    navContact: 'お問い合わせ',
+    skipToProjects: 'プロジェクトへスキップ',
+    hello: 'こんにちは、',
+    nameSuffix: ' です',
+    namePeriod: '。',
+    statusLine: '{major}の学生 · {location} · GMT+8',
+    viewProjects: 'プロジェクトを見る ↓',
+    writeEmail: 'メールを送る',
+    scrollDown: 'スクロール',
+    projectsTitle: 'プロジェクトと演習',
+    projectsMeta: '全 {count} 件 · さらに準備中',
+    wip: '作業中 WIP',
+    orphanCell: '＋ 次のプロジェクト、準備中',
+    footerLead: 'アイデアはありますか？',
+    footerAccent: 'メール',
+    footerTail: 'をお送りください。',
+    copyright: '© {year} {name} · {location}',
+    backToTop: 'トップへ戻る ↑',
+    newTab: '（新しいタブで開きます）',
+  },
+  ko: {
+    pageTitle: 'Kimoe Han · 포트폴리오',
+    metaDescription: 'Kimoe Han의 포트폴리오 — 네트워크 공학 · 중국 광둥',
+    navLabel: '메인 내비게이션',
+    langGroupLabel: '언어 전환',
+    navProjects: '프로젝트',
+    navContact: '연락하기',
+    skipToProjects: '프로젝트로 건너뛰기',
+    hello: '안녕하세요, ',
+    nameSuffix: '입니다',
+    namePeriod: '.',
+    statusLine: '{major} 재학생 · {location} · GMT+8',
+    viewProjects: '프로젝트 보기 ↓',
+    writeEmail: '이메일 보내기',
+    scrollDown: '아래로 스크롤',
+    projectsTitle: '프로젝트 & 연습',
+    projectsMeta: '총 {count}개 · 더 준비 중',
+    wip: '작업 중 WIP',
+    orphanCell: '＋ 다음 프로젝트, 준비 중',
+    footerLead: '좋은 아이디어가 있나요? ',
+    footerAccent: '이메일',
+    footerTail: '을 보내주세요.',
+    copyright: '© {year} {name} · {location}',
+    backToTop: '맨 위로 ↑',
+    newTab: ' (새 탭에서 열림)',
+  },
+  en: {
+    pageTitle: 'Kimoe Han · Portfolio',
+    metaDescription: "Kimoe Han's portfolio — Network Engineering · Guangdong, China",
+    navLabel: 'Main navigation',
+    langGroupLabel: 'Switch language',
+    navProjects: 'Projects',
+    navContact: 'Contact',
+    skipToProjects: 'Skip to projects',
+    hello: "Hi, I'm",
+    nameSuffix: '',
+    namePeriod: '.',
+    statusLine: '{major} student · {location} · GMT+8',
+    viewProjects: 'View projects ↓',
+    writeEmail: 'Write an email',
+    scrollDown: 'Scroll down',
+    projectsTitle: 'Projects & Exercises',
+    projectsMeta: '{count} in total · more on the way',
+    wip: 'WIP',
+    orphanCell: '＋ Next project, on its way',
+    footerLead: 'Got an idea? ',
+    footerAccent: 'Email',
+    footerTail: ' me.',
+    copyright: '© {year} {name} · {location}',
+    backToTop: 'Back to top ↑',
+    newTab: '(opens in new tab)',
+  },
+}

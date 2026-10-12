@@ -1,12 +1,15 @@
 import Reveal from './Reveal'
 import ProjectCard from './ProjectCard'
 import { projects } from '../data/site'
+import { useLang } from '../i18n'
+import { fill } from '../i18n/ui'
 
 /**
  * 项目区：双列卡片网格
  * 奇数张卡片时自动补一块虚线占位格，避免 2×2+1 的失衡收尾（评委意见）
  */
 export default function Projects() {
+  const { t } = useLang()
   const hasOrphan = projects.length % 2 === 1
 
   return (
@@ -20,22 +23,22 @@ export default function Projects() {
               01 — PROJECTS
             </p>
             <h2 id="projects-title" className="mt-4 text-2xl font-medium md:text-4xl">
-              项目与练习
+              {t.projectsTitle}
             </h2>
           </div>
           <p className="font-mono text-xs text-text-secondary">
-            共 {projects.length} 个 · 更多在路上
+            {fill(t.projectsMeta, { count: projects.length })}
           </p>
         </Reveal>
 
         <div className="mt-12 grid grid-cols-1 gap-4 md:mt-16 md:grid-cols-2 md:gap-6">
           {projects.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={i} />
+            <ProjectCard key={p.subtitle} project={p} index={i} />
           ))}
 
           {hasOrphan && (
             <div className="flex min-h-40 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border p-6 text-center">
-              <span className="font-mono text-xs text-text-secondary">＋ 下一个项目，正在路上</span>
+              <span className="font-mono text-xs text-text-secondary">{t.orphanCell}</span>
             </div>
           )}
         </div>

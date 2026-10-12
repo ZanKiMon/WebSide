@@ -1,5 +1,7 @@
 import Reveal from './Reveal'
-import { profile } from '../data/site'
+import { profile, tr } from '../data/site'
+import { useLang } from '../i18n'
+import { fill } from '../i18n/ui'
 import { MailIcon } from './Icons'
 
 /**
@@ -7,6 +9,8 @@ import { MailIcon } from './Icons'
  * 不放 GitHub 等社交图标——没有真实链接就不出现假入口
  */
 export default function Footer() {
+  const { lang, t } = useLang()
+
   return (
     <footer id="contact" aria-labelledby="contact-title" className="scroll-mt-16 border-t border-border">
       <div className="mx-auto w-full max-w-5xl px-6 py-20 md:px-10 md:py-28">
@@ -15,7 +19,9 @@ export default function Footer() {
             02 — CONTACT
           </p>
           <h2 id="contact-title" className="mt-4 text-2xl font-medium md:text-4xl">
-            有想法？写封<span className="text-accent">邮件</span>给我。
+            {t.footerLead}
+            <span className="text-accent">{t.footerAccent}</span>
+            {t.footerTail}
           </h2>
         </Reveal>
 
@@ -32,13 +38,17 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-xs text-text-secondary">
-            © {new Date().getFullYear()} {profile.name} · {profile.location}
+            {fill(t.copyright, {
+              year: new Date().getFullYear(),
+              name: profile.name,
+              location: tr(profile.location, lang),
+            })}
           </p>
           <a
             href="#hero"
             className="self-start font-mono text-xs text-text-secondary transition-colors hover:text-accent sm:self-auto"
           >
-            回到顶部 ↑
+            {t.backToTop}
           </a>
         </div>
       </div>

@@ -11,6 +11,31 @@
         background-color: #090a0c;
       }
     </style>
+    <!-- React 加载前预设语言，避免首帧 lang/标题闪错（与 src/i18n/index.jsx 同一套逻辑） -->
+    <script>
+      ;(function () {
+        var langs = ['zh', 'ja', 'ko', 'en']
+        var lang = 'zh'
+        try {
+          var saved = localStorage.getItem('kimoe-lang')
+          if (langs.indexOf(saved) !== -1) {
+            lang = saved
+          } else {
+            var b = (navigator.language || 'zh').toLowerCase()
+            lang = b.indexOf('zh') === 0 ? 'zh' : b.indexOf('ja') === 0 ? 'ja' : b.indexOf('ko') === 0 ? 'ko' : 'en'
+          }
+        } catch (e) {}
+        var titles = {
+          zh: 'Kimoe Han · 个人作品集',
+          ja: 'Kimoe Han · ポートフォリオ',
+          ko: 'Kimoe Han · 포트폴리오',
+          en: 'Kimoe Han · Portfolio',
+        }
+        var htmlLangs = { zh: 'zh-CN', ja: 'ja', ko: 'ko', en: 'en' }
+        document.documentElement.lang = htmlLangs[lang]
+        document.title = titles[lang]
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
