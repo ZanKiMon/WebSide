@@ -75,26 +75,6 @@ export function SparklesIcon({ className = 'size-4' }) {
   )
 }
 
-/** 怪盗面具（切到怪盗红主题） */
-export function MaskIcon({ className = 'size-4' }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M2.5 9.5C5 5.5 8.5 4 12 4s7 1.5 9.5 5.5c-2.5 4.5-6 6.5-9.5 6.5S5 14 2.5 9.5Z" />
-      <path d="M6.5 10.5c1.2-1 2.8-1 4 0" />
-      <path d="M13.5 10.5c1.2-1 2.8-1 4 0" />
-    </svg>
-  )
-}
-
 /** ↗ 外链箭头 */
 export function ArrowIcon({ className = 'size-4' }) {
   return (
