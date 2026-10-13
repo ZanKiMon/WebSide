@@ -132,6 +132,17 @@ body {
   }
 }
 
+/* 内容区色罩：从 Hero 到卡片流整块的加厚半透明底
+   用主题背景色混入少量强调色，深浅主题各自成色 */
+.content-veil {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-background) 84%, var(--color-accent) 5%) 0%,
+    color-mix(in srgb, var(--color-background) 74%, transparent) 26%,
+    color-mix(in srgb, var(--color-background) 82%, transparent) 100%
+  );
+}
+
 /* 打字机签名行（借鉴 Sky Blog 主题的 subtitle effects）
    用 clip-path 逐步显现，宽度自适应、中文英文都适用 */
 .typewriter {

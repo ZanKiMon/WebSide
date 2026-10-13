@@ -53,13 +53,15 @@ export default function App() {
       <Spine open={spineOpen} />
       <Navbar spineOpen={spineOpen} onToggleSpine={toggleSpine} />
 
-      {/* 悬浮玻璃卡片流主列 */}
+      {/* 悬浮玻璃卡片流主列（整块加厚半透明色罩垫底，保证详细内容的可读性） */}
       <main className="mx-auto w-full max-w-4xl px-4 pt-4 sm:px-6 lg:group-data-[spine=open]:pl-36 xl:group-data-[spine=open]:pl-0">
-        <Hero />
-        <Moments />
-        <AboutCard />
-        <Projects />
-        <Gallery />
+        <div className="content-veil rounded-3xl border border-border/70 p-4 shadow-2xl shadow-black/10 backdrop-blur-md sm:p-6">
+          <Hero />
+          <Moments />
+          <AboutCard />
+          <Projects />
+          <Gallery />
+        </div>
       </main>
 
       <Footer />
